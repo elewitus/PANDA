@@ -1,6 +1,6 @@
 library(RPANDA)
 library(igraph)
-revised_spectR<-function (phylo, method = c("standard")) 
+spectR<-function (phylo, method = c("standard"), zero_bound=F) 
 			{
 #define skewness function				
 skewness <- function(x, na.rm = FALSE) {
@@ -75,7 +75,10 @@ integr <- function(x, f)
  if (method == "standard") {
 e = eigen(graph.laplacian(graph.adjacency(data.matrix(dist.nodes(phylo)), 
             weighted = T), normalized = F), symmetric = T, only.values = T)
-	x = subset(e$values, e$values >= 1)
+	if(zero_bound==T){
+		x = subset(e$values,e$values > 0)}
+	 else{
+	x = subset(e$values, e$values >= 1)}
 	d = dens(log(x))
 	dsc = d$y/(integr(d$x,d$y))
 	principal_eigenvalue <- max(x)
