@@ -39,7 +39,7 @@ the position of the largest difference between eigenvalues, giving the number of
 
 
 \references{
-	Lewitus, E., Morlon, H., Characterizing and comparing phylogenies from their Laplacian spectrum, bioRxiv doi: http://dx.doi.org/10.1101/026476}
+	Lewitus, E., Morlon, H. (2015) Characterizing and comparing phylogenies from their Laplacian spectrum, Systematic Biology, 65(3):495-507}
 
 \author{E Lewitus}
 
