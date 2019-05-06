@@ -34,7 +34,7 @@ a matrix of distances between phylogenie pairs, typically the output of the JSDt
 \author{E Lewitus}
 
 \references{
-	Lewitus, E., Morlon, H., Characterizing and comparing phylogenies from their Laplacian spectrum, bioRxiv doi: http://dx.doi.org/10.1101/026476}
+	Lewitus, E., Morlon, H. (2015) Characterizing and comparing phylogenies from their Laplacian spectrum, Systematic Biology, 65(3):495-507}
 
 \seealso{
 \code{\link{JSDtree}}
