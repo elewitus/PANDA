@@ -1,6 +1,6 @@
-trait_spectR<-function(phylo,data,plot=F){
+trait_spectR<-function(phylo,dat,plot=F){
 	if (length(phylo$tip.label)!=length(dat)) 
-        stop("data do not match phyloe")
+        stop("dat do not match phylo")
        
     #remove internal nodes from distance matrix    
 	phylo$tip.label<-1:length(phylo$tip.label)
@@ -37,7 +37,8 @@ trait_spectR<-function(phylo,data,plot=F){
 		par(mar=c(4,5,1,1))
 		plot(d$x,dsc,type='l',
 			xlab=expression(''[n]*lambda),
-			ylab=expression(paste('f(x)/',integral(f(y)*dy)),sep=''))	
+			ylab=expression(paste('f(x)/',integral(f(y)*dy)),sep=''))
+			polygon(d$x,dsc,col=colors(1)[runif(1,1,500)])	
 		return(res)
 		}
 	else{return(res)}
