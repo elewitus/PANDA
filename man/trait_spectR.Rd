@@ -36,6 +36,7 @@ the largest y-axis value of the spectral density profile}
 \references{
 	Lewitus, E., Morlon, H. (2015) Characterizing and comparing phylogenies from their Laplacian spectrum, Systematic Biology, 65(3):495-507}
 
+
 \author{E Lewitus}
 
 
