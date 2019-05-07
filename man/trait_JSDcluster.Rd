@@ -24,7 +24,7 @@ an object of type 'phylo' (see ape documentation)}
 
 
 \value{
-	plots a hierarchical cluster with bootstrap support (>0.9) and outputs results of the k-medoids clustering on the optimal number of clusters in the form of a list with the following components
+	plots a heatmap and hierarchical cluster with bootstrap support (>0.9) and outputs results of the k-medoids clustering on the optimal number of clusters in the form of a list with the following components
 	\item{clusters}{a list with the following components: size, max_diss, av_diss, diameter, and separation}
 	\item{J-S matrix}{a matrix providing the Jensen-Shannon distance values between pairs of phylogenetic trait data}
 	\item{cluster assignment}{a table	that lists for each trait its cluster assignment and silhouete width}
@@ -43,7 +43,7 @@ an object of type 'phylo' (see ape documentation)}
 
 
 \examples{
-trees<-TESS::tess.sim.age(n=20,age=10,0.15,0.05,MRCA=TRUE)
-mat<-matrix(rexp(100, rate=.1), ncol=length(trees))
-trait_JSDcluster(trees,mat)
+tree<-TESS::tess.sim.age(n=1,age=10,0.15,0.05,MRCA=TRUE)[[1]]
+mat<-matrix(rexp(100, rate=.1), nrow=length(tree$tip.label),ncol=20)
+trait_JSDcluster(tree,mat)
 }
