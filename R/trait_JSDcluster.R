@@ -22,12 +22,33 @@ trait_JSDcluster <- function(phylo,mat,plot=F){
 	attr(resultsMatrix, "method") <- "dist"
 	return(resultsMatrix) 
  }
- 
+#gaussian kernel convolution	 
+dens <- function(x, bw = bw.nrd0, kernel = kernelG, n = 4096,
+                from = min(x) - 3*sd, to = max(x) + 3*sd, adjust = 1,
+                ...) {
+  if(has.na <- any(is.na(x))) {
+    na.omit(x)->x
+    if(length(x) == 0)
+        stop('too infinite.')
+  }
+  	kernelG<-function(x, mean=0, sd=1) 
+		dnorm(x, mean = mean, sd = sd)
+  x<-log(x)		
+  sd <- (if(is.numeric(bw)) bw[1] else bw(x)) * adjust
+  X <- seq(from, to, len = n)
+  M <- outer(X, x, kernel, sd = sd, ...)
+  structure(list(x = X, y = rowMeans(M), bw = sd,
+                 call = match.call(), n = length(x),
+                 data.name = deparse(substitute(x)),
+                 has.na = has.na), class =  "density")
+}
+
 #take square-root of Jensen-Shannon divergence
 JSDist <- function(x,y) sqrt(dist.JSD(x,y))
 
+
 x<-lapply(1:dim(mat)[2],function(l){
-	trait_spectR(tr,mat[,l])$eigenvalues
+	trait_spectR(phylo,mat[,l])$eigenvalues
 	} )
 
 d<-c()
@@ -39,7 +60,8 @@ Ds<-c()
 			colnames(Ds)<-colnames(mat)
 	
 	#compute divergence matrix
-	JSD<-as.matrix(JSDist(Ds-min(Ds)+1e-9))	
+	if(min(Ds)<0){JSD<-as.matrix(JSDist(Ds-min(Ds)+1e-9))}
+	else{JSD<-as.matrix(JSDist(Ds))}	
 	
 	#cluster on k-medoids
 	clustersMedoid <- pamk(JSD)
@@ -51,6 +73,9 @@ Ds<-c()
 	write.table(clustersMedoid[[1]]$silinfo$widths[,c(1,3)],file='JSD_divergenceMatrix_clusters.txt')
 	
 	if(plot==T){
+	#plot heatmap
+	heatmap(JSD,symm=T)
+		dev.new()
 	#plot hierarchical clustering with bootstrap support
 	clustersHierarchy <- pvclust(JSD,r=seq(0.5,1.5,0.2))
 	plot(clustersHierarchy,cex=0.3)
