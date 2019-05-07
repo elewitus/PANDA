@@ -26,7 +26,9 @@ Imports:
     grDevices,
     utils,
     BioGeoBEARS,
-    mvtnorm
+    mvtnorm,
+    pracma,
+    fields
 Encoding: UTF-8
 Author: Hélène Morlon [aut, cre, cph],
 	Eric Lewitus [aut, cph],
