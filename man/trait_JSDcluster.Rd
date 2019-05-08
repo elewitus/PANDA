@@ -39,11 +39,12 @@ an object of type 'phylo' (see ape documentation)}
 
 
 \seealso{
-\code{\code{\link{trait_spectR}}}
+\code{\link{trait_spectR}}
+}
 
 
 \examples{
-tree<-TESS::tess.sim.age(n=1,age=10,0.15,0.05,MRCA=TRUE)[[1]]
+tree<-data(Cetacea)
 mat<-matrix(rexp(100, rate=.1), nrow=length(tree$tip.label),ncol=20)
 trait_JSDcluster(tree,mat)
 }
