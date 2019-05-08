@@ -9,14 +9,17 @@ Spectral density plot of phylogeny trait data
 Computes the spectra of eigenvalues for the modified graph Laplacian of a phylogenetic tree with associated tip data, convolves the eigenvalues with a Gaussian kernel and plots the density profile of eigenvalues, and estimates the summary statistics of the profile.}
 
 \usage{
-trait_spectR(phylo, data, plot=F)
+trait_spectR(phylo, dat, draw=F)
 }
 
 \arguments{
   \item{phylo}{
 an object of type 'phylo' (see ape documentation)}
-  \item{data}{
+  \item{dat}{
 a vector of trait data associated with the tips of the phylo object; tips and trait data should be aligned}
+   \item{draw}{
+   	if true, the spectral density profile of the phylogenetic trait data is plotted
+   }	
 }
 
 \value{
@@ -43,5 +46,5 @@ the largest y-axis value of the spectral density profile}
 \examples{
 tr<-rtree(10)
 dat<-runif(10,1,2)
-trait_spectR(tr,dat,plot=T)
+trait_spectR(tr,dat,draw=T)
 }
