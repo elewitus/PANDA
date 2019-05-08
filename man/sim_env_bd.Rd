@@ -8,13 +8,10 @@ Simulate birth-death tree dependent on an environmental curve
 Simulates a birth-death tree (starting with one lineage) with speciation and/or extinction rate that varies as a function of an input environmental curve. Notations follow Morlon et al. PNAS 2011 and Condamine et al. ELE 2013.
 }
 \usage{
-fit_env(env_data, f.lamb, f.mu, lamb_par, mu_par, df=NULL, time.stop = 0, return.all.extinct=TRUE, prune.extinct=TRUE)
+sim_env_bd(env_data, f.lamb, f.mu, lamb_par, mu_par, df=NULL, time.stop = 0, return.all.extinct=TRUE, prune.extinct=TRUE)
 }
 
 \arguments{
-  \item{phylo}{
-an object of type 'phylo' (see ape documentation)
-}
   \item{env_data}{
 environmental data, given as a data frame with two columns. The first column is time, the second column is the environmental data (temperature for instance).
 }
@@ -37,6 +34,12 @@ a numeric vector of initial values for the parameters of f.mu to be estimated (t
 }
 \item{df}{
  the degree of freedom to use to define the spline. As a default, smooth.spline(env_data[,1], env_data[,2])$df is used. See \emph{sm.spline} for details.  
+}
+\item{return.all.extinct}{
+	if true, additionally returns all lineages that do not reach the present
+}
+\item{prune.extinct}{
+	if true, prunes extinct lineages from the phylogeny
 }
   }
 
