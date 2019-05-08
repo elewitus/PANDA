@@ -1,4 +1,4 @@
-trait_spectR<-function(phylo,dat,plot=F){
+trait_spectR<-function(phylo,dat,draw=F){
 	if (length(phylo$tip.label)!=length(dat)) 
         stop("dat do not match phylo")
        
@@ -33,7 +33,7 @@ trait_spectR<-function(phylo,dat,plot=F){
 		fragmenter=(sum((x-mean(x))^3)/l)/(sum((x-mean(x))^2)/l)^(3/2)
 		res<-list(eigenvalues=x,splitter=splitter,tracer=tracer,fragmenter=fragmenter)
 		#plot spectral density profile
-		if(plot==T){
+		if(draw==T){
 		par(mar=c(4,5,1,1))
 		plot(d$x,dsc,type='l',
 			xlab=expression(''[n]*lambda),
