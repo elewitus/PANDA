@@ -46,5 +46,5 @@ an object of type 'phylo' (see ape documentation)}
 \examples{
 tree<-data(Cetacea)
 mat<-matrix(rexp(100, rate=.1), nrow=length(tree$tip.label),ncol=20)
-trait_JSDcluster(tree,mat)
+JSDcluster_t(tree,mat)
 }
