@@ -60,11 +60,15 @@ Ds<-c()
 			colnames(Ds)<-colnames(mat)
 	
 	#compute divergence matrix
-	if(min(Ds)<0){JSD<-as.matrix(JSDist(Ds-min(Ds)+1e-9))}
+	if(min(Ds)<0){
+		Ds<-as.matrix(Ds)
+		Ds<-Ds-min(Ds)+1e-9
+		Ds<-as.data.frame(Ds)
+		JSD<-as.matrix(JSDist(Ds))}
 	else{JSD<-as.matrix(JSDist(Ds))}	
 	
 	#cluster on k-medoids
-	clustersMedoid <- pamk(JSD)
+	clustersMedoid <- pamk(JSD,k=2:c(dim(JSD)[1]-1))
 	
 	#write table for divergence matrix
 	write.table(JSD,file='JSD_divergenceMatrix.txt')
